@@ -8,6 +8,6 @@ Puedes encontrar las presentación en el siguiente link:
 
 # Web Worker Example
 
-This Web app shows the benefit of using a web worker. In the code there is a fibonacci function which the level of complexity very high and makes it very inefficient causing the browser stops working
+This Web app shows the benefit of using a web worker. In the code, there is a Fibonacci function which the level of complexity very high and makes it very inefficient causing the browser stops working.
 
 Slides: 
