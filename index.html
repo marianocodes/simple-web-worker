@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Web Workers Example</title>
+</head>
+
+<body>
+  <h3>Fibonaccci</h3>
+
+  <div>
+    <button id="start-worker">start worker</button>
+    <button id="end-worker">terminate worker</button>
+    <h4 id="output"></h4>
+  </div>
+
+  <div>
+    <button onclick="alert('browser responsive!')">
+      Test browser responsiveness
+    </button>
+  </div>
+
+  <script>
+    let result = []
+    let worker
+
+    // Blocking event
+    // const fibonacci = (num) => {
+    //   if (num <= 1) return 1
+    //   postMessage(`Fibonacci number to calculate: ${num}`)
+    //   return fibonacci(num - 1) + fibonacci(num - 2)
+    // }
+
+    // console.log(fibonacci(50))
+
+    const initWoker = () => {
+      if (typeof (Worker) !== 'undefined' || typeof (worker) == 'undefined') {
+        worker = new Worker('worker.js');
+
+        worker.onmessage = (event) => {
+          result.push(event.data)
+        }
+
+        setInterval(() => {
+          console.log('Results: ', result[result.length - 1], result.length)
+        }, 2000)
+      }
+    }
+
+    const closeWorker = () => {
+      worker.terminate();
+      worker = undefined;
+      console.log('Terminate worker')
+    }
+
+    const $initBtn = document.querySelector('#start-worker')
+    const $closeBtn = document.querySelector('#end-worker')
+
+    $initBtn.addEventListener('click', initWoker)
+    $closeBtn.addEventListener('click', closeWorker)
+
+  </script>
+
+</body>
+
+</html>
